@@ -5,7 +5,7 @@ MAINTAINER John McCallum cfljam@users.noreply.github.com
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
-    apt-get -y install gcc  && \
+    apt-get -y install gcc git build-essential && \
     rm -rf /var/lib/apt/lists/*
 
 
