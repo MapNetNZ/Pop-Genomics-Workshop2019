@@ -1,4 +1,5 @@
 
+## A Docker Image for MAPGD + htslib + Samtools
 FROM ubuntu
 
 MAINTAINER John McCallum cfljam@users.noreply.github.com
@@ -45,4 +46,5 @@ RUN wget -O MAPGD.zip $MAPGD_URL  && \
   unzip MAPGD.zip && \
   cd MAPGD-* && \
   ./configure  && \
-  make && make install  # && make test
+  make && \
+  make install  # && make test
