@@ -10,29 +10,39 @@ RUN apt-get update && \
 	curl \
 	gcc \
 	git \
+  gettext \
 	libgsl-dev \
 	libcurl4-openssl-dev \
-	libhts2  \
-	zip \
+	libgettextpo-dev \
+  libbz2-dev \
+  libncurses5-dev \
+  libsqlite3-dev \
+  liblzma-dev \
+  nano \
+  sqlite3 \
 	unzip \
-	libbz2-dev \
 	zlib1g \
 	zlib1g-dev \
-	gettext \
-	libgettextpo-dev \
+  zip \
 	wget && \
       rm -rf /var/lib/apt/lists/*
-#ARG HTSLIB_URL="https://github.com/samtools/htslib/releases/download/1.9/htslib-1.9.tar.bz2"
-#RUN  wget $HTSLIB_URL -O htslib.tar.bz2 && \#
-#	tar -xjvf htslib.tar.bz2 && \
-#	cd htslib-* && \
-#	./configure && \
-#	make && \
-#	make install
+
+ARG SAMTOOLS_URL="https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2"
+RUN  wget $SAMTOOLS_URL  -O samtools.tar.bz2 && \
+ tar -xjvf samtools.tar.bz2 && \
+ cd samtools-* && \
+ ./configure && \
+	make && \
+  make prefix=/usr/local/bin install &&\
+  cd htslib-* && \
+  ./configure && \
+ 	  make && \
+   make install
+
 
 ARG MAPGD_URL="https://github.com/LynchLab/MAPGD/archive/master.zip"
 RUN wget -O MAPGD.zip $MAPGD_URL  && \
   unzip MAPGD.zip && \
   cd MAPGD-* && \
-  ./configure && \
-  make && make install ## && make test
+  ./configure  && \
+  make && make install  # && make test
