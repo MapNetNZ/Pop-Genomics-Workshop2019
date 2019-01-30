@@ -41,9 +41,9 @@ RUN  wget $SAMTOOLS_URL  -O samtools.tar.bz2 && \
    make install
 
 
-ARG MAPGD_URL="https://github.com/LynchLab/MAPGD/archive/master.zip"
-RUN wget -O MAPGD.zip $MAPGD_URL  && \
-  unzip MAPGD.zip && \
+ARG MAPGD_URL="https://github.com/kiwiroy/MAPGD/archive/htslib-ac-fix.tar.gz"
+RUN wget -O MAPGD.tar.gz $MAPGD_URL  && \
+  tar -xvf  MAPGD.tar.gz   && \
   cd MAPGD-* && \
   ./configure  && \
   make && \
