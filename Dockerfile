@@ -28,6 +28,9 @@ RUN apt-get update && \
 	wget && \
       rm -rf /var/lib/apt/lists/*
 
+###############################
+## Install Samtools + htlslib##
+###############################
 ARG SAMTOOLS_URL="https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2"
 RUN  wget $SAMTOOLS_URL  -O samtools.tar.bz2 && \
  tar -xjvf samtools.tar.bz2 && \
@@ -38,13 +41,19 @@ RUN  wget $SAMTOOLS_URL  -O samtools.tar.bz2 && \
   cd htslib-* && \
   ./configure && \
  	  make && \
-   make install
+   make install && \
+   make test
 
+ENV LD_LIBRARY_PATH='/samtools-1.9/htslib-1.9/'
 
-ARG MAPGD_URL="https://github.com/kiwiroy/MAPGD/archive/htslib-ac-fix.tar.gz"
-RUN wget -O MAPGD.tar.gz $MAPGD_URL  && \
-  tar -xvf  MAPGD.tar.gz   && \
+###########
+# MAPGD ###
+###########
+ARG MAPGD_URL="https://github.com/LynchLab/MAPGD/archive/master.zip"
+RUN wget -O MAPGD.zip $MAPGD_URL  && \
+  unzip MAPGD.zip   && \
   cd MAPGD-* && \
-  ./configure  && \
+  ./configure && \
   make && \
-  make install  # && make test
+  make install DESTDIR=/usr/local/bin/  && \
+  make test
