@@ -42,7 +42,7 @@ tar -xjvf samtools.tar.bz2 && \
 cd samtools-* && \
 ./configure && \
 make && \
-make prefix=/usr/local/bin install &&\
+make prefix=/usr/local install &&\
 cd htslib-* && \
 ./configure && \
 make && \
