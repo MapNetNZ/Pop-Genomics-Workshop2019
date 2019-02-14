@@ -55,5 +55,5 @@ RUN wget -O MAPGD.zip $MAPGD_URL  && \
   cd MAPGD-* && \
   ./configure && \
   make && \
-  make install DESTDIR=/usr/local/bin/  && \
+  make install   && \
   make test
