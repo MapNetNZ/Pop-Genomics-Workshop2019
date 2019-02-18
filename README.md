@@ -10,3 +10,13 @@ Links
   - https://singularity-hub.org/
   - https://singularityhub.github.io/
 - Vagrant Box https://app.vagrantup.com/sylabs/boxes/singularity-3.0-ubuntu-bionic64
+- Jupyter https://www.datacamp.com/community/tutorials/tutorial-jupyter-notebook
+
+
+### Reproducing the  Conda Environment
+
+- run this under Linux. 
+- assuming you have installed miniconda
+```
+conda env create -f environment.yml 
+```
